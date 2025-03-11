@@ -19,7 +19,6 @@ const AddLeadModal: React.FC<AddLeadModalProps> = ({ isOpen, onClose, onSubmit }
     handleSubmit,
     formState: { errors },
     reset,
-    setError,
   } = useForm<FormInputs>();
 
   const [serverError, setServerError] = useState<string | null>(null);
@@ -29,16 +28,17 @@ const AddLeadModal: React.FC<AddLeadModalProps> = ({ isOpen, onClose, onSubmit }
       await onSubmit(data);
       reset();
       onClose();
-      setServerError(null); // Clear any previous server errors
-    } catch (error: any) {
+      setServerError(null); 
+    } catch (error: unknown) {
         console.log("gadoo",error)
-      if (error.data && error.data.message) {
-        // Handle server-side validation errors
-        setServerError(error.data.message);
-      } else {
-        // Handle other errors
-        setServerError('An unexpected error occurred. Please try again.');
-      }
+ // Type-checking the error before accessing properties
+ if (error instanceof Error) {
+  setServerError(error.message);
+} else if (error && typeof error === "object" && "data" in error && error.data && typeof error.data === "object" && "message" in error.data) {
+  setServerError((error as { data: { message: string } }).data.message);
+} else {
+  setServerError('An unexpected error occurred. Please try again.');
+}
     }
   };
 

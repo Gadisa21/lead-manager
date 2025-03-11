@@ -1,6 +1,6 @@
 "use client"
 import { useEffect ,useState} from "react"
-import { UseSelector,useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { setLeads,addLead
  } from "@/features/leads/leadsSlice"
 import { useGetLeadsQuery,useCreateLeadMutation } from "@/features/api/apiSlice"
@@ -10,7 +10,7 @@ import AddLeadModal from "@/components/AddLeadModal"
 import Spinner from "../components/spinner"
 
 
-function page() {
+function Page() {
 
   const [AddLead] = useCreateLeadMutation()
   const dispatch = useDispatch()
@@ -24,7 +24,7 @@ function page() {
       await AddLead(lead).unwrap();
       dispatch(addLead({...lead, status: lead.status || 'New', createdAt: new Date().toISOString()}))
 
-    } catch (error: any) {
+    } catch (error: unknown) {
       // Throw the error to be handled by the modal
       throw error;
     }
@@ -68,4 +68,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

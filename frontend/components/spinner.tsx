@@ -1,5 +1,4 @@
 "use client"
-import React from "react";
 import { Spinner as Loading } from "@nextui-org/react";
 
 const Spinner = () => {
