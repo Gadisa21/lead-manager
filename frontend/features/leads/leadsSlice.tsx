@@ -1,12 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
+import { Lead } from '@/types/api'
 
 
-interface Lead {
-    name:string
-    email:string
-    status:string
-}
+
 
 interface LeadsState {
     leads: Lead[]
