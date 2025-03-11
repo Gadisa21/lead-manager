@@ -10,7 +10,7 @@ Lead Manager is a web application for managing leads. It allows users to add and
 
 ## Technologies Used
 
-- Frontend: Next.js, Redux Toolkit, Tailwind CSS
+- Frontend: Next.js, Redux Toolkit, Tailwind CSS,react hook form
 - Backend: Express.js, MongoDB
 - State Management: Redux Toolkit
 - API: RTK Query
