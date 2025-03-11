@@ -7,6 +7,7 @@ import { useGetLeadsQuery,useCreateLeadMutation } from "@/features/api/apiSlice"
 import { RootState } from "../store/store"
 import LeadCard from "@/components/LeadCard"
 import AddLeadModal from "@/components/AddLeadModal"
+import Spinner from "../components/spinner"
 
 
 function page() {
@@ -20,8 +21,9 @@ function page() {
 
   const handleAddLead = async (lead: { name: string; email: string; status?: string }) => {
     try {
-      dispatch(addLead({...lead, status: lead.status || 'New', createdAt: new Date().toISOString()}))
       await AddLead(lead).unwrap();
+      dispatch(addLead({...lead, status: lead.status || 'New', createdAt: new Date().toISOString()}))
+
     } catch (error: any) {
       // Throw the error to be handled by the modal
       throw error;
@@ -35,7 +37,7 @@ function page() {
   },[leads,dispatch])
   console.log("leadstate",leadsState)
   
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Spinner />;
   if (isError) return <div>Error fetching leads</div>;
   return (
     <div className=' min-h-screen bg-gradient-to-r from-blue-50 to-purple-50 '>

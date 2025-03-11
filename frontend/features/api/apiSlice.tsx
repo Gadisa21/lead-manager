@@ -4,7 +4,7 @@ import build from 'next/dist/build'
 
 export const leadsApi = createApi({
     reducerPath: 'leadsApi',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api' }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'https://lead-manager-3.onrender.com/api' }),
 
     endpoints:(build)=>({
         createLead:build.mutation<void,LeadRequest>({
