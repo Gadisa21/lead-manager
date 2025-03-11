@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
+const cors=require('cors')
 
 
 const router=require("./routes/leadRoutes")
@@ -14,6 +15,9 @@ connectDB();
 
 // Middleware to parse JSON
 app.use(express.json());
+
+// Middleware to allow cross-origin requests
+app.use(cors())
 
 // Routes
 app.use('/api',router)
