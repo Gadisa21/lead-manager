@@ -22,8 +22,7 @@ function NavBar() {
           {/* Desktop Links */}
           <div className="hidden sm:flex space-x-8">
             <Link href="/">Home</Link>
-            <Link href="/products">Products</Link>
-            <Link href="/products">Brand</Link>
+            <Link href="/">Leads</Link>
           </div>
         </div>
 

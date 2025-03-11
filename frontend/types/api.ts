@@ -1,10 +1,10 @@
 export interface Lead {
-    _id: string
+    _id?: string
     name:string
     email:string
     status:string
     createdAt:string
-    __v:number
+    __v?:number
 }
 
 export interface LeadRequest{
